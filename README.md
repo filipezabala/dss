@@ -1,2 +1,2 @@
 # dfl
-Digital Financial Literacy measurament.
+Digital Financial Literacy measurement.
