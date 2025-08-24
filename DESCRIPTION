@@ -1,16 +1,16 @@
-Package: dfl
+Package: dss
 Type: Package
-Title: Digital Financial Literacy Score
-Version: 0.0.1
-Date: 2025-08-08
+Title: Digital Skill Score
+Version: 0.0.2
+Date: 2025-08-24
 Authors@R: person("Zabala", "Filipe J.", email = "filipezabala@gmail.com", role = c("cre","aut"))
 Maintainer: Zabala Filipe J. <filipezabala@gmail.com>
-Description: Provides the function `dfl` to calculate the Digital Financial Literacy Score, `DFL = log(x+1)*(1-log(p))`.
+Description: Provides the function `dss` to calculate the Digital Skill Score, `DSS = log(x+1)*(1-log(p))`.
 License: GPL-3
 LicenseFile: LICENSE
 Depends: R (>= 4.0.0)
-URL: https://github.com/filipezabala/dfl
-BugReports: https://github.com/filipezabala/dfl/issues
+URL: https://github.com/filipezabala/dss
+BugReports: https://github.com/filipezabala/dss/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2

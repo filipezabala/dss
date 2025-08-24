@@ -1,2 +1,2 @@
-# dfl
-Digital Financial Literacy measurement.
+# dss
+Digital Skill Score measurement.
