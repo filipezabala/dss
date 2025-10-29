@@ -1,11 +1,11 @@
 Package: dss
 Type: Package
 Title: Digital Skill Score
-Version: 0.0.2
-Date: 2025-08-24
+Version: 0.0.3
+Date: 2025-10-29
 Authors@R: person("Zabala", "Filipe J.", email = "filipezabala@gmail.com", role = c("cre","aut"))
 Maintainer: Zabala Filipe J. <filipezabala@gmail.com>
-Description: Provides the function `dss` to calculate the Digital Skill Score, `DSS = log(x+1)*(1-log(p))`.
+Description: Provides the function `dss` to calculate the Digital Skill Score.
 License: GPL-3
 LicenseFile: LICENSE
 Depends: R (>= 4.0.0)

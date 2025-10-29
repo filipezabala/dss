@@ -17,7 +17,7 @@
 #' # Customer makes x=c(10,2,57,23) transactions with digital proportions p=c(0.15,0.4,0.7,0.9) at times t=1,2,3,4
 #' dss(c(10,2,57,23),c(0.15,0.4,0.7,0.9))
 #' @export
-dss <- function(x, group_by = 'month'){
+dss_vector <- function(x, p){
   if(!is.null(length(x))){
     u <- log(x+1)
     r <- -log(p)
