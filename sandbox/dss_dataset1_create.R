@@ -1,4 +1,3 @@
-# Build dataset
 # Build expanded dataset with 5 IDs and consistent digital proportions
 dss_dataset1 <- data.frame(
   id = c(rep(1,10), rep(2,10), rep(3,10), rep(4,10), rep(5,10)),
@@ -75,7 +74,7 @@ dss_dataset1 <- dss_dataset1 %>%
 dss_dataset1
 
 # Creates data/dss_dataset1.rda
-usethis::use_data(dss_dataset1)
+usethis::use_data(dss_dataset1, overwrite = TRUE)
 
 
 # Generate the .Rd file (from dss_dataset_doc.R)
