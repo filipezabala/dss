@@ -79,3 +79,4 @@ usethis::use_data(dss_dataset1, overwrite = TRUE)
 
 # Generate the .Rd file (from dss_dataset_doc.R)
 devtools::document()
+devtools::load_all()
