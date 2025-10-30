@@ -46,11 +46,12 @@ dss <- function(x, p = NULL, group_by = 'month'){
 
 
 # Usage examples:
-# dss(21)
-# dss(21, .9)
-# dss(c(21,3,1,8), c(.9,.3,.1,.5))
-# dss(dss_dataset1, group_by = 'day')
-# dss(dss_dataset1, group_by = 'month')
-# dss(dss_dataset1, group_by = 'year')
-# dss(dss_dataset1, group_by = c('year', 'quarter'))
+library(dss)
+dss(21)
+dss(21, .9)
+dss(c(21,3,1,8), c(.9,.3,.1,.5))
+dss(dss_dataset1, group_by = 'day')
+dss(dss_dataset1, group_by = 'month')
+dss(dss_dataset1, group_by = 'year')
+dss(dss_dataset1, group_by = c('year', 'quarter'))
 
