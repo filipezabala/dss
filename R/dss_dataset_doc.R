@@ -1,7 +1,7 @@
 #' Transaction Data for Digital Skill Score Calculation
 #'
 #' @description 
-#' This dataset contains simulated banking transaction data used to 
+#' This dataset contains syntetic banking transaction data used to 
 #' demonstrate the Digital Skill Score (DSS) metric. The DSS measures
 #' a customer's digital engagement based on transaction behavior.
 #'

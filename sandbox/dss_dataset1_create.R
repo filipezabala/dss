@@ -2,10 +2,11 @@ library(tidyverse)
 
 # Build expanded dataset with 5 IDs and consistent digital proportions
 dss_dataset1 <- data.frame(
-  id = c(rep(1,10), rep(2,10), rep(3,10), rep(4,10), rep(5,10)),
+  id = c(rep(1L,10), rep(2L,10), rep(3L,10), rep(4L,10), rep(5L,10)),
   time = c(
     # ID 1: "The Digital Explorer" - High digital usage, explores features over time
-    '2025-01-01', '2025-01-01',
+    '2025-01-01', 
+    '2025-01-07',
     '2025-02-05', '2025-02-05', '2025-02-05',
     '2025-03-10', 
     '2025-04-15', 
