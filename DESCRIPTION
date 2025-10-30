@@ -1,7 +1,7 @@
 Package: dss
 Type: Package
 Title: Digital Skill Score
-Version: 0.0.3
+Version: 0.0.4
 Date: 2025-10-29
 Authors@R: person("Zabala", "Filipe J.", email = "filipezabala@gmail.com", role = c("cre","aut"))
 Maintainer: Zabala Filipe J. <filipezabala@gmail.com>
@@ -9,6 +9,7 @@ Description: Provides the function `dss` to calculate the Digital Skill Score.
 License: GPL-3
 LicenseFile: LICENSE
 Depends: R (>= 4.0.0)
+Imports: lubridate, tidyverse
 URL: https://github.com/filipezabala/dss
 BugReports: https://github.com/filipezabala/dss/issues
 Encoding: UTF-8

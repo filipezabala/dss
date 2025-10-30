@@ -1,8 +1,8 @@
-#' DSS Dataset 2
+#' DSS Dataset 1
 #'
 #' Syntetic dataset containing the expected structure to apply on `dss::dss()`.
 #'
-#' @format A data frame with 8 rows and 4 variables:
+#' @format A data frame with 15 rows and 4 variables:
 #' \describe{
 #'   \item{id}{Customer ID.}
 #'   \item{time}{Timestamp.}
@@ -12,5 +12,5 @@
 #' @source Filipe J. Zabala.
 #' @usage 
 #' library(dss)
-#' data(dss_dataset2)
-"dss_dataset2"
+#' data(dss_dataset1)
+"dss_dataset1"

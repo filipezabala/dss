@@ -3,25 +3,54 @@
 #' @description Calculates the Digital Skill Score for a customer with `x` transactions with digital proportion `p`.
 #' @param x: Number of transactions.
 #' @param p: Digital proportion.
+#' @param group_by: Must group_by 'day', 'month' (Default), 'quarter' or 'year'?
 #' @returns Digital Skill Score, `dss = log(x+1)*(1-log(p))`
 #' @examples
-#' # library(dss)
-#' # Customer makes x=1 transaction in a product with digital proportion p=1
-#' dss(1,1)
-#' # Customer makes x=10 transactions in a product with p=1
-#' dss(10,1)
-#' # Customer makes x=1 transaction with p=0.15
-#' dss(1,0.15)
-#' # Customer with x=10 and p=0.15
-#' dss(10,0.15)
-#' # Customer makes x=c(10,2,57,23) transactions with digital proportions p=c(0.15,0.4,0.7,0.9) at times t=1,2,3,4
-#' dss(c(10,2,57,23),c(0.15,0.4,0.7,0.9))
+#' library(dss)
+#' 
+#' dss(dss_dataset2)
 #' @export
-dss <- function(x, group_by = 'month'){
-  if(!is.null(length(x))){
-    u <- log(x+1)
-    r <- -log(p)
-    s <- u*(1+r)
-    return(max(s))
+dss <- function(x, p = NULL, group_by = 'month'){
+  # Simplest DSS function (vector)
+  dss0 <- function(x, p){
+    if(is.null(p)){
+      print('Must enter p!')
+    } else{
+      u <- log(x+1)
+      r <- -log(p)
+      s <- u*(1+r)
+    }
+  }
+  if(is.vector(x)){
+    s <- dss0(x,p)
+    return(s)
+  }
+  
+  # Creating time-grouping variables
+  if(is.data.frame(x)){
+    x0 <- x %>%
+      dplyr::mutate(
+        day = format(lubridate::ymd(time), "%Y-%m-%d"),
+        month = format(lubridate::ymd(time), "%Y-%m"),
+        quarter = paste0(lubridate::year(lubridate::ymd(time)), 
+                         "-Q", lubridate::quarter(lubridate::ymd(time))),
+        year = lubridate::year(lubridate::ymd(time))
+      ) %>% 
+      dplyr::group_by(dplyr::across(dplyr::all_of(group_by))) %>% 
+      dplyr::count(transaction, digital_proportion) %>% 
+      dplyr::mutate(dss = dss0(n,digital_proportion))
+    
+    return(x0) 
   }
 }
+
+
+# Usage examples:
+# dss(21)
+# dss(21, .9)
+# dss(c(21,3,1,8), c(.9,.3,.1,.5))
+# dss(dss_dataset1, group_by = 'day')
+# dss(dss_dataset1, group_by = 'month')
+# dss(dss_dataset1, group_by = 'year') 
+# dss(dss_dataset1, group_by = c('year', 'quarter'))
+

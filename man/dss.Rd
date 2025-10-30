@@ -4,12 +4,14 @@
 \alias{dss}
 \title{Digital Skill Score - DSS}
 \usage{
-dss(x, group_by = "month")
+dss(x, p = NULL, group_by = "month")
 }
 \arguments{
 \item{x:}{Number of transactions.}
 
 \item{p:}{Digital proportion.}
+
+\item{group_by:}{Must group_by 'day', 'month' (Default), 'quarter' or 'year'?}
 }
 \value{
 Digital Skill Score, `dss = log(x+1)*(1-log(p))`
@@ -18,15 +20,7 @@ Digital Skill Score, `dss = log(x+1)*(1-log(p))`
 Calculates the Digital Skill Score for a customer with `x` transactions with digital proportion `p`.
 }
 \examples{
-# library(dss)
-# Customer makes x=1 transaction in a product with digital proportion p=1
-dss(1,1)
-# Customer makes x=10 transactions in a product with p=1
-dss(10,1)
-# Customer makes x=1 transaction with p=0.15
-dss(1,0.15)
-# Customer with x=10 and p=0.15
-dss(10,0.15)
-# Customer makes x=c(10,2,57,23) transactions with digital proportions p=c(0.15,0.4,0.7,0.9) at times t=1,2,3,4
-dss(c(10,2,57,23),c(0.15,0.4,0.7,0.9))
+library(dss)
+
+dss(dss_dataset2)
 }
