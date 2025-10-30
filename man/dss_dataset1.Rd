@@ -3,24 +3,65 @@
 \docType{data}
 \name{dss_dataset1}
 \alias{dss_dataset1}
-\title{DSS Dataset 1}
+\title{Transaction Data for Digital Skill Score Calculation}
 \format{
-A data frame with 15 rows and 4 variables:
+A data frame with 50 rows and 4 columns:
 \describe{
-  \item{id}{Customer ID.}
-  \item{time}{Timestamp.}
-  \item{transaction}{Transaction type.}
-  \item{digital_proportion}{Transaction digital proportion.}
+  \item{id}{Unique customer identifier (Integer from 1 to 5)}
+  \item{time}{Date of transaction in ISO format (Character)}
+  \item{transaction}{Type of banking transaction (Character):
+    \itemize{
+      \item \code{CHECK BALANCE}: Has digital_proportion = 0.9
+      \item \code{REQUEST CREDIT CARD}: Has digital_proportion = 0.5
+      \item \code{PAY BILL}: Has digital_proportion = 0.3
+      \item \code{REQUEST CHECKBOOK}: Has digital_proportion = 0.1
+    }
+  }
+  \item{digital_proportion}{Weight representing digital interaction 
+  potential (Numeric, range 0-1)}
 }
 }
 \source{
-Filipe J. Zabala.
+Simulated data specifically for DSS package examples
 }
 \usage{
-library(dss)
-data(dss_dataset1)
+dss_dataset1
 }
 \description{
-Syntetic dataset containing the expected structure to apply on `dss::dss()`.
+This dataset contains simulated banking transaction data used to 
+demonstrate the Digital Skill Score (DSS) metric. The DSS measures
+a customer's digital engagement based on transaction behavior.
+}
+\details{
+The dataset contains 5 customers with different behavioral patterns:
+\itemize{
+  \item ID 1: Digital Explorer - uses various features
+  \item ID 2: Traditional Bill-Payer - consistent bill payments  
+  \item ID 3: Balance Checker - frequent balance inquiries
+  \item ID 4: Seasonal User - variable activity patterns
+  \item ID 5: Digital Novice - gradual digital adoption
+}
+
+Digital proportions are fixed per transaction type:
+\itemize{
+  \item Check Balance: 0.9 (high digital)
+  \item Request Credit Card: 0.5 (medium digital)
+  \item Pay Bill: 0.3 (low digital) 
+  \item Request Checkbook: 0.1 (very low digital)
+}
+}
+\examples{
+# Load the dataset
+data(dss_dataset1)
+
+# View the structure
+str(dss_dataset1)
+
+# Calculate DSS by month
+result <- dss(dss_dataset1, group_by = "month")
+print(result)
+}
+\seealso{
+\code{\link{dss}} for the main calculation function
 }
 \keyword{datasets}

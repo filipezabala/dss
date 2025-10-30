@@ -4,31 +4,45 @@
 #' @param x: Number of transactions.
 #' @param p: Digital proportion.
 #' @param group_by: Must group_by 'day', 'month' (Default), 'quarter' or 'year'?
-#' @returns Digital Skill Score, `dss = log(x+1)*(1-log(p))`
+#' @returns Digital Skill Score, `dss = log(x+1)*(1-log(p))`.
 #' @examples
 #' library(dss)
 #' 
-#' dss(dss_dataset2)
+#' # If x is a vector, must enter p
+#' dss(1)
+#' dss(1, 0.9)
+#' dss(c(1,3,21,8), c(.9,.3,.1,.5))
+#' 
+#' # If x is a data frame
+#' dss(dss_dataset1, group_by = 'day')
+#' dss(dss_dataset1, group_by = 'month')
+#' dss(dss_dataset1, group_by = 'month', keep_tables = TRUE)
+#' dss(dss_dataset1, group_by = 'year')
+#' dss(dss_dataset1, group_by = c('year', 'quarter'))
 #' @export
-dss <- function(x, p = NULL, group_by = 'month'){
+dss <- function(x, p = NULL, group_by = 'month', keep_tables = FALSE){
+  
   # Simplest DSS function (vector)
   dss0 <- function(x, p){
+    u <- log(x+1)
+    r <- -log(p)
+    s <- u*(1+r)
+  }
+  
+  # If x is a vector
+  if(is.vector(x)){
     if(is.null(p)){
       print('Must enter p!')
     } else{
-      u <- log(x+1)
-      r <- -log(p)
-      s <- u*(1+r)
-    }
-  }
-  if(is.vector(x)){
     s <- dss0(x,p)
     return(s)
+    }
   }
   
-  # Creating time-grouping variables
+  # If x is a data frame
   if(is.data.frame(x)){
-    x0 <- x %>%
+    dss_itj <- x %>%
+      # Creating time-grouping variables
       dplyr::mutate(
         day = format(lubridate::ymd(time), "%Y-%m-%d"),
         month = format(lubridate::ymd(time), "%Y-%m"),
@@ -36,22 +50,23 @@ dss <- function(x, p = NULL, group_by = 'month'){
                          "-Q", lubridate::quarter(lubridate::ymd(time))),
         year = lubridate::year(lubridate::ymd(time))
       ) %>% 
-      dplyr::group_by(dplyr::across(dplyr::all_of(group_by))) %>% 
+      # Grouping by id and group_by
+      dplyr::group_by(dplyr::across(dplyr::all_of(c('id',group_by)))) %>% 
+      # Counting transactions
       dplyr::count(transaction, digital_proportion) %>% 
-      dplyr::mutate(dss = dss0(n,digital_proportion))
+      # Calculating DSS
+      dplyr::mutate(dss = dss0(n,digital_proportion)) 
     
-    return(x0) 
+    dss_it <- dss_itj %>% 
+      summarise(dss = sum(dss)) 
+    
+    dss_i <- dss_it %>% 
+      summarise(dss = max(dss)) 
+    
+    if(keep_tables){
+      return(list(x=x, dss_itj=dss_itj, dss_it=dss_it, dss_i=dss_i))
+    } else{
+      return(dss_i) 
+    }
   }
 }
-
-
-# Usage examples:
-# library(dss)
-# dss(21)
-# dss(21, .9)
-# dss(c(21,3,1,8), c(.9,.3,.1,.5))
-# dss(dss_dataset1, group_by = 'day')
-# dss(dss_dataset1, group_by = 'month')
-# dss(dss_dataset1, group_by = 'year')
-# dss(dss_dataset1, group_by = c('year', 'quarter'))
-
