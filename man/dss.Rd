@@ -4,7 +4,7 @@
 \alias{dss}
 \title{Digital Skill Score - DSS}
 \usage{
-dss(x, p = NULL, group_by = "month", keep_tables = FALSE)
+dss(x, p = NULL, group_by = "month", keep_tables = FALSE, round_dec = 4)
 }
 \arguments{
 \item{x:}{Number of transactions.}
@@ -25,6 +25,7 @@ library(dss)
 # If x is a vector, must enter p
 dss(1)
 dss(1, 0.9)
+dss(1, 0.9, round_dec = Inf)
 dss(c(1,3,21,8), c(.9,.3,.1,.5))
 
 # If x is a data frame

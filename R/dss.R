@@ -11,6 +11,7 @@
 #' # If x is a vector, must enter p
 #' dss(1)
 #' dss(1, 0.9)
+#' dss(1, 0.9, round_dec = Inf)
 #' dss(c(1,3,21,8), c(.9,.3,.1,.5))
 #' 
 #' # If x is a data frame
@@ -20,7 +21,8 @@
 #' dss(dss_dataset1, group_by = 'year')
 #' dss(dss_dataset1, group_by = c('year', 'quarter'))
 #' @export
-dss <- function(x, p = NULL, group_by = 'month', keep_tables = FALSE){
+dss <- function(x, p = NULL, group_by = 'month', 
+                keep_tables = FALSE, round_dec = 4){
   
   # Simplest DSS function (vector)
   dss0 <- function(x, p){
@@ -35,7 +37,7 @@ dss <- function(x, p = NULL, group_by = 'month', keep_tables = FALSE){
       print('Must enter p!')
     } else{
     s <- dss0(x,p)
-    return(s)
+    return(round(s,round_dec))
     }
   }
   
@@ -55,7 +57,7 @@ dss <- function(x, p = NULL, group_by = 'month', keep_tables = FALSE){
       # Counting transactions
       dplyr::count(transaction, digital_proportion) %>% 
       # Calculating DSS
-      dplyr::mutate(dss = dss0(n,digital_proportion)) 
+      dplyr::mutate(dss = round(dss0(n,digital_proportion),round_dec)) 
     
     dss_it <- dss_itj %>% 
       summarise(dss = sum(dss)) 
