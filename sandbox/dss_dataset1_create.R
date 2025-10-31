@@ -12,21 +12,21 @@ dss_dataset1 <- data.frame(
     '2025-04-15', 
     '2025-06-20', '2025-06-20',
     '2025-08-25',
-    # ID 2: "The Traditional Bill-Payer" - Consistent bill payments, low digital usage
-    '2025-01-04', '2025-02-04', '2025-03-04', '2025-04-04', '2025-05-04',
-    '2025-06-04', '2025-07-04', '2025-08-04', '2025-09-04', '2025-10-04',
-    # ID 3: "The Balance Checker" - Frequent balance checks, high digital usage
-    '2025-01-07', '2025-01-14', '2025-02-07', '2025-02-21', '2025-03-07',
-    '2025-04-07', '2025-05-07', '2025-07-07', '2025-09-07', '2025-11-07',
-    # ID 4: "The Seasonal User" - Mixed activity throughout the year
+    # ID 2: "The Seasonal User" - Mixed activity throughout the year
     '2025-01-10', '2025-01-10', '2025-01-10',
     '2025-03-15', '2025-03-15',
     '2025-06-20', '2025-06-20', '2025-06-20',
     '2025-09-25',
     '2025-12-30',
-    # ID 5: "The Digital Novice" - Gradual adoption of digital features
+    # ID 3: "The Digital Novice" - Gradual adoption of digital features
     '2025-01-02', '2025-02-01', '2025-03-03', '2025-04-02', '2025-05-02',
-    '2025-06-02', '2025-07-02', '2025-08-02', '2025-09-02', '2025-10-02'
+    '2025-06-02', '2025-07-02', '2025-08-02', '2025-09-02', '2025-10-02',
+    # ID 4: "The Traditional Bill-Payer" - Consistent bill payments, low digital usage
+    '2025-01-04', '2025-02-04', '2025-03-04', '2025-04-04', '2025-05-04',
+    '2025-06-04', '2025-07-04', '2025-08-04', '2025-09-04', '2025-10-04',
+    # ID 5: "The Balance Checker" - Frequent balance checks, high digital usage
+    '2025-01-07', '2025-01-14', '2025-02-07', '2025-02-21', '2025-03-07',
+    '2025-04-07', '2025-05-07', '2025-07-07', '2025-09-07', '2025-11-07'
   ),
   transaction = c(
     # ID 1: Explores different features over time
@@ -36,19 +36,13 @@ dss_dataset1 <- data.frame(
     'PAY BILL',
     'CHECK BALANCE', 'REQUEST CREDIT CARD',
     'CHECK BALANCE',
-    # ID 2: Consistent bill payments
-    'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL',
-    'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL',
-    # ID 3: Primarily balance checks
-    'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE',
-    'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE',
-    # ID 4: Mixed transactions throughout the year
+    # ID 2: Mixed transactions throughout the year
     'CHECK BALANCE', 'PAY BILL', 'REQUEST CREDIT CARD',
     'CHECK BALANCE', 'REQUEST CHECKBOOK',
     'CHECK BALANCE', 'PAY BILL', 'REQUEST CREDIT CARD',
     'REQUEST CHECKBOOK',
     'CHECK BALANCE',
-    # ID 5: Gradual adoption of different features
+    # ID 3: Gradual adoption of different features
     'CHECK BALANCE',
     'CHECK BALANCE',
     'PAY BILL',
@@ -58,7 +52,13 @@ dss_dataset1 <- data.frame(
     'PAY BILL',
     'CHECK BALANCE',
     'REQUEST CHECKBOOK',
-    'REQUEST CREDIT CARD'
+    'REQUEST CREDIT CARD',
+    # ID 4: Consistent bill payments
+    'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL',
+    'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL', 'PAY BILL',
+    # ID 5: Primarily balance checks
+    'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE',
+    'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE', 'CHECK BALANCE'
   )
 )
 

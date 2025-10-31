@@ -1,8 +1,8 @@
 Package: dss
 Type: Package
 Title: Digital Skill Score
-Version: 0.1.0
-Date: 2025-10-30
+Version: 0.1.1
+Date: 2025-10-31
 Authors@R: person("Zabala", "Filipe J.", email = "filipezabala@gmail.com", role = c("cre","aut"))
 Maintainer: Zabala Filipe J. <filipezabala@gmail.com>
 Description: Provides the function `dss` to calculate the Digital Skill Score.
